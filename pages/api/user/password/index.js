@@ -1,8 +1,7 @@
 import { ValidateProps } from '@/api-lib/constants';
 import { updateUserPasswordByOldPassword } from '@/api-lib/db';
 import { auths, database, validateBody } from '@/api-lib/middlewares';
-import { ncOpts } from '@/api-lib/nc';
-import nc from 'next-connect';
+import nc, { ncOpts } from '@/api-lib/nc';
 
 const handler = nc(ncOpts);
 handler.use(database, ...auths);

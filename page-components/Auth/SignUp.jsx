@@ -52,10 +52,10 @@ const SignUp = () => {
   return (
     <Wrapper className={styles.root}>
       <div className={styles.main}>
-        <h1 className={styles.title}>Join Now</h1>
+        <h1 className={styles.title}>Sign up</h1>
         <form onSubmit={onSubmit}>
           <Container alignItems="center">
-            <p className={styles.subtitle}>Your login</p>
+            <p className={styles.subtitle}>Account</p>
             <div className={styles.seperator} />
           </Container>
           <Input
@@ -79,7 +79,7 @@ const SignUp = () => {
           />
           <Spacer size={0.75} axis="vertical" />
           <Container alignItems="center">
-            <p className={styles.subtitle}>About you</p>
+            <p className={styles.subtitle}>Info</p>
             <div className={styles.seperator} />
           </Container>
           <Input

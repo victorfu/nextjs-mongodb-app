@@ -2,8 +2,7 @@ import { ValidateProps } from '@/api-lib/constants';
 import { findPostById } from '@/api-lib/db';
 import { findComments, insertComment } from '@/api-lib/db/comment';
 import { auths, database, validateBody } from '@/api-lib/middlewares';
-import { ncOpts } from '@/api-lib/nc';
-import nc from 'next-connect';
+import nc, { ncOpts } from '@/api-lib/nc';
 
 const handler = nc(ncOpts);
 

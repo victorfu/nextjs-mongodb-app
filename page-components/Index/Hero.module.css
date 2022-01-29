@@ -1,3 +1,10 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(100vh - var(--nav-height) - var(--footer-height));
+}
+
 .title {
   font-size: 8rem;
   text-align: center;

@@ -84,6 +84,11 @@ const UserMenu = ({ user, mutate }) => {
                 <ThemeSwitcher />
               </Container>
             </div>
+            {user.type && user.type === 'admin' && (
+              <Link passHref href="/administration">
+                <a className={styles.item}>Administration</a>
+              </Link>
+            )}
             <button onClick={onSignOut} className={styles.item}>
               Sign out
             </button>
@@ -106,7 +111,7 @@ const Nav = () => {
           justifyContent="space-between"
         >
           <Link href="/">
-            <a className={styles.logo}>Next.js MongoDB App</a>
+            <a className={styles.logo}>Ponyta</a>
           </Link>
           <Container>
             {user ? (

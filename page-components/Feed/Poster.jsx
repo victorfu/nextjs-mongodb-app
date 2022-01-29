@@ -11,22 +11,39 @@ import Link from 'next/link';
 import { useCallback, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import styles from './Poster.module.css';
+import Image from 'next/image';
 
 const PosterInner = ({ user }) => {
   const contentRef = useRef();
   const [isLoading, setIsLoading] = useState(false);
+  const imageRef = useRef();
+  const [imageHref, setImageHref] = useState();
 
   const { mutate } = usePostPages();
+
+  const onImageChange = useCallback((e) => {
+    const file = e.currentTarget.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (l) => {
+      setImageHref(l.currentTarget.result);
+    };
+    reader.readAsDataURL(file);
+  }, []);
 
   const onSubmit = useCallback(
     async (e) => {
       e.preventDefault();
       try {
         setIsLoading(true);
+        const formData = new FormData();
+        formData.append('content', contentRef.current.value);
+        if (imageRef.current.files[0]) {
+          formData.append('postImage', imageRef.current.files[0]);
+        }
         await fetcher('/api/posts', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ content: contentRef.current.value }),
+          body: formData,
         });
         toast.success('You have posted successfully');
         contentRef.current.value = '';
@@ -54,6 +71,18 @@ const PosterInner = ({ user }) => {
         <Button type="success" loading={isLoading}>
           Post
         </Button>
+      </Container>
+      <Container className={styles.poster}>
+        {imageHref && (
+          <Image height={96} width={96} src={imageHref} alt="post-img" />
+        )}
+        <input
+          aria-label="Post Image"
+          type="file"
+          accept="image/*"
+          ref={imageRef}
+          onChange={onImageChange}
+        />
       </Container>
     </form>
   );

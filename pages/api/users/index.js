@@ -1,15 +1,28 @@
 import { ValidateProps } from '@/api-lib/constants';
-import { findUserByEmail, findUserByUsername, insertUser } from '@/api-lib/db';
+import {
+  findUsers,
+  findUserByEmail,
+  findUserByUsername,
+  insertUser,
+} from '@/api-lib/db';
 import { auths, database, validateBody } from '@/api-lib/middlewares';
-import { ncOpts } from '@/api-lib/nc';
+import nc, { ncOpts } from '@/api-lib/nc';
 import { slugUsername } from '@/lib/user';
-import nc from 'next-connect';
 import isEmail from 'validator/lib/isEmail';
 import normalizeEmail from 'validator/lib/normalizeEmail';
 
 const handler = nc(ncOpts);
 
 handler.use(database);
+
+handler.get(...auths, async (req, res) => {
+  const users = await findUsers(
+    req.db,
+    req.query.limit ? parseInt(req.query.limit, 10) : undefined
+  );
+
+  res.json({ users });
+});
 
 handler.post(
   validateBody({

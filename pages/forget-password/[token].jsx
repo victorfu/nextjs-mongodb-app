@@ -1,7 +1,7 @@
 import { findTokenByIdAndType } from '@/api-lib/db';
 import { database } from '@/api-lib/middlewares';
 import { ForgetPasswordToken } from '@/page-components/ForgetPassword';
-import nc from 'next-connect';
+import nc from '@/api-lib/nc';
 import Head from 'next/head';
 
 const ResetPasswordTokenPage = ({ valid, token }) => {

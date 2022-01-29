@@ -7,8 +7,7 @@ import {
 } from '@/api-lib/db';
 import { CONFIG as MAIL_CONFIG, sendMail } from '@/api-lib/mail';
 import { database, validateBody } from '@/api-lib/middlewares';
-import { ncOpts } from '@/api-lib/nc';
-import nc from 'next-connect';
+import nc, { ncOpts } from '@/api-lib/nc';
 import normalizeEmail from 'validator/lib/normalizeEmail';
 
 const handler = nc(ncOpts);

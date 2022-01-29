@@ -26,6 +26,7 @@
 
   --link: var(--success);
   --nav-height: 48px;
+  --footer-height: 138px;
 }
 
 [data-theme='dark'] {

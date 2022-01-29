@@ -1,0 +1,28 @@
+.root {
+  min-height: calc(100vh - var(--footer-height));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.media-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.image-container {
+  width: 100%;
+  display: flex;
+  overflow-x: scroll;
+  margin-bottom: 10px;
+}
+
+.image {
+  height: 195px;
+  max-width: 195px;
+  object-fit: cover;
+}

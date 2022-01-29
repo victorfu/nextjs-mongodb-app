@@ -1,11 +1,10 @@
 import { ValidateProps } from '@/api-lib/constants';
 import { findUserByUsername, updateUserById } from '@/api-lib/db';
 import { auths, database, validateBody } from '@/api-lib/middlewares';
-import { ncOpts } from '@/api-lib/nc';
+import nc, { ncOpts } from '@/api-lib/nc';
 import { slugUsername } from '@/lib/user';
 import { v2 as cloudinary } from 'cloudinary';
 import multer from 'multer';
-import nc from 'next-connect';
 
 const upload = multer({ dest: '/tmp' });
 const handler = nc(ncOpts);

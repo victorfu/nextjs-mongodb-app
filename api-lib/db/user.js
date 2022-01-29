@@ -40,6 +40,17 @@ export async function findUserByEmail(db, email) {
     .then((user) => user || null);
 }
 
+export async function findUsers(db, limit = 10) {
+  return db
+    .collection('users')
+    .aggregate([
+      { $sort: { _id: -1 } },
+      { $limit: limit },
+      { $project: dbProjectionUsers() },
+    ])
+    .toArray();
+}
+
 export async function updateUserById(db, id, data) {
   return db
     .collection('users')

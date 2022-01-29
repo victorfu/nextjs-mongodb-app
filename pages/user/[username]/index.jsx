@@ -1,7 +1,7 @@
 import { findUserByUsername } from '@/api-lib/db';
 import { database } from '@/api-lib/middlewares';
 import { User } from '@/page-components/User';
-import nc from 'next-connect';
+import nc from '@/api-lib/nc';
 import Head from 'next/head';
 
 export default function UserPage({ user }) {

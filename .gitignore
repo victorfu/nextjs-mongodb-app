@@ -62,7 +62,8 @@ typings/
 .next
 
 # package-lock
-package-lock.json
-yarn.lock
+#package-lock.json
+#yarn.lock
 
 .vercel
+.idea

@@ -1,0 +1,32 @@
+name: Push then release
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+
+jobs:
+    Build:
+        strategy:
+            matrix:
+                node-version: [ 14.x ]
+        runs-on: ubuntu-latest
+        steps:
+            -   name: "Check out"
+                uses: actions/checkout@v2
+            -   name: "Use Node.js ${{ matrix.node-version }}"
+                uses: actions/setup-node@v2
+                with:
+                    node-version: ${{ matrix.node-version }}
+            -   uses: actions/cache@v2
+                with:
+                    path: ~/.npm
+                    key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                    restore-keys: |
+                        ${{ runner.os }}-node-
+            -   name: "Build web application"
+                run: |
+                    echo "::group::Build State"
+                    npm install
+                    npm run build --prod
+                    echo "::endgroup::"
